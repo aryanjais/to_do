@@ -1,0 +1,14 @@
+.navContainer{
+    border: 1px solid white;
+    /* width: 30%; */
+    flex: .3
+}
+.optionContainer {
+
+}
+.options{
+    font-size: 1.25rem;
+    border-bottom: 2px solid white;
+    padding: 4px 0px 4px 4px;
+    cursor: pointer;
+}

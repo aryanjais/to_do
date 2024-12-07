@@ -1,0 +1,64 @@
+/* 
+.addIcon:hover {
+    font-size: 50px;
+} */
+/* 
+@keyframes addIconButton {
+    from {
+        font-size: 45px;
+    }
+
+    to {
+        font-size: 50px;
+        right: 5px;
+        bottom: 5px;
+    }
+} */
+
+.addIcon {
+    font-size: 45px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    background-color: transparent;
+}
+/* 
+.addIcon:hover{
+    animation: addIconButton 200ms;
+    font-size: 50px;
+    right: 5px;
+    bottom: 5px;
+} */
+.addPopup {
+    position: absolute;
+    border: 2px solid white;
+    background-color: #282c34;
+    top: 40vh;
+    left: 40%;
+    height: 250px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.popupInput {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-size: 18px;
+    background: none;
+    color: white;
+    border: none;
+}
+.popupBottom {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    padding: 2px 15px;
+
+}
+.addBtn {
+}
