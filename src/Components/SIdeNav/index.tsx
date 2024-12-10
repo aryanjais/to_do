@@ -13,6 +13,7 @@ const SideNav = (props) => {
         <li onClick={applyFilter} className={`options ${filter === 'today' ? 'selectedFilter' : ''}`} data-filter='today'>Today</li>
         <li onClick={applyFilter} className={`options ${filter === 'tomorrow' ? 'selectedFilter' : ''}`} data-filter='tomorrow'>Tommorow</li>
         <li onClick={applyFilter} className={`options ${filter === 'later' ? 'selectedFilter' : ''}`} data-filter='later'>Later</li>
+        <li onClick={applyFilter} className={`options ${filter === 'completed' ? 'selectedFilter' : ''}`} data-filter='completed'>Completed</li>
       </ul>
     </div>
   )

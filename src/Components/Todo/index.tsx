@@ -6,22 +6,11 @@ import TodoList from '../TodoList/index.tsx';
 
 const Todo = () => {
     const newList = JSON.parse(localStorage.getItem('my_todo_list') ?? "[]");
-    const [list, setList] = useState<any>(newList);
+    const [list, setList] = useState<any>(newList); // mapping this list
     const [filter, setFilter] = useState('');
 
-    const handleEdit = (newData, index: number) => {
-        const tempList = [...list]; // changing in the displayed list only
-        tempList[index] = newData;
-
-        setList(tempList);
-        localStorage.setItem('my_todo_list', JSON.stringify(tempList)); // need to work here for updating
-    }
-
-    const handleDelete = (ind) => {
-        const tempList = [...list];
-        tempList.splice(ind, 1);
-        setList(tempList);
-        localStorage.setItem('my_todo_list', JSON.stringify(tempList));
+    const generateRandomId = () => {
+        return `${new Date().valueOf()}-${Math.ceil(Math.random() * 1000)}`
     }
 
     const handleFilter = (filterBy: string) => {
@@ -46,14 +35,38 @@ const Todo = () => {
             tommorowsDate.setHours(23, 59, 59, 999);
             filteredList = newList.filter(({ endsAt }) => new Date(endsAt).valueOf() > tommorowsDate.valueOf());
         }
+        else if (filterBy === 'completed') {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            filteredList = newList.filter(({ endsAt }) => new Date(endsAt).valueOf() < today.valueOf());
+        }
         setList(filteredList);
     }
 
 
-    const handleAdd = (newTodo) => {
+    const handleAdd = (obj) => {
+        const newTodo = { ...obj, id: generateRandomId(), createdAt: new Date().valueOf() }
         setList([newTodo, ...newList]);
         localStorage.setItem('my_todo_list', JSON.stringify([newTodo, ...newList]));
-        console.log('checking update**8', localStorage.getItem('my_todo_list'));
+        filter && handleFilter(filter);
+    }
+
+    
+    const handleEdit = (newData, index: number) => {
+        const id = list[index].id;
+        const tempList = newList.map((item) => item.id === id ? {...item, ...newData } : item);
+
+        setList(tempList);
+        localStorage.setItem('my_todo_list', JSON.stringify(tempList)); // need to work here for updating
+        filter && handleFilter(filter);
+    }
+
+    const handleDelete = (ind) => {
+        const id = list[ind].id;
+        const tempList = newList.filter((item) => item.id !== id);
+
+        setList(tempList);
+        localStorage.setItem('my_todo_list', JSON.stringify(tempList));
         filter && handleFilter(filter);
     }
 

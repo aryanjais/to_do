@@ -4,7 +4,7 @@ import './styles.css'
 const AddPopup = (props) => {
     const { togglePopup, handleAdd, editData } = props;
     const [description, setDescription] = useState(editData?.description ?? '');
-    const [endsAt, setEndAt] = useState(editData?.endsAt || new Date().valueOf());
+    const [endsAt, setEndAt] = useState(editData?.endsAt || new Date().setHours(23, 59, 59, 999));
 
     const clickAdd = () => {
         handleAdd({ description, endsAt });
@@ -19,7 +19,7 @@ const AddPopup = (props) => {
     const handleShortcut = (e) => {
         console.log(e.keyCode);
         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && description) clickAdd();
-        else if(e.keyCode === 27) togglePopup();
+        else if (e.keyCode === 27) togglePopup();
     }
     const selectedTime = new Date(endsAt).toISOString().split('T')[0];
 
