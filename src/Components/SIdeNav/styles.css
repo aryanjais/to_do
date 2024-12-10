@@ -12,3 +12,7 @@
     padding: 4px 0px 4px 4px;
     cursor: pointer;
 }
+.selectedFilter {
+    background-color: white;
+    color: black;
+}
